@@ -10,6 +10,7 @@ from evaluators.report_store import save_report, list_reports
 from rag.git_diff import find_repo_root, changed_files
 from rag.advisory_ingest import refresh_cache
 from evaluators.run_eval import run_eval
+from evaluators.render_report import render_markdown
 
 app = FastAPI(title="AppSec Red Team Copilot", version="0.1.1")
 CFG = Path(__file__).resolve().parents[1] / 'watchers' / 'watch_config.json'
@@ -110,3 +111,28 @@ def advisories_refresh(limit:int=Query(50, ge=1, le=100)):
 def eval_run():
     summary, out = run_eval()
     return {'report': str(out), 'riskAccuracy': summary['riskAccuracy'], 'typeCoverage': summary['typeCoverage'], 'cases': summary['cases']}
+
+
+@app.post('/report/markdown')
+def report_markdown(path:str):
+    root = find_repo_root(path)
+    if not root:
+        return {'error':'no git repo root found', 'path': path}
+    files = changed_files(root)
+    reports=[triage_file(f) for f in files]
+    overall='low'
+    if any(r.get('risk')=='high' for r in reports):
+        overall='high'
+    elif any(r.get('risk')=='medium' for r in reports):
+        overall='medium'
+    payload = {
+      'project': str(root),
+      'summary': f'Analyzed git diff files: {len(files)}',
+      'risk': overall,
+      'findings': reports,
+      'source':'git-diff'
+    }
+    md = render_markdown(payload)
+    out = root / 'SECURITY_REPORT.md'
+    out.write_text(md)
+    return {'path': str(out), 'risk': overall, 'filesAnalyzed': len(files)}
