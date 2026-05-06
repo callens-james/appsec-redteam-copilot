@@ -2,6 +2,17 @@ from pathlib import Path
 import subprocess
 from watchers.registry import approved_projects
 
+EXCLUDE_PATTERNS = [
+    "/backend/watchers/change_queue.jsonl",
+    "/backend/data_reports.jsonl",
+    "/.venv/",
+    "/__pycache__/"
+]
+
+def _excluded(path:Path):
+    sp=str(path)
+    return any(x in sp for x in EXCLUDE_PATTERNS)
+
 def _in_approved(path:Path):
     for root in approved_projects():
         r=Path(root)
@@ -29,6 +40,6 @@ def changed_files(repo_root:Path):
         if not rel:
             continue
         f=(repo_root / rel).resolve()
-        if _in_approved(f):
+        if _in_approved(f) and not _excluded(f):
             files.append(str(f))
     return files

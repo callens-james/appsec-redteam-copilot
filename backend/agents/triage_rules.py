@@ -54,7 +54,9 @@ def triage_file(path:str):
             findings.append({'type':'auth_surface','severity':'info','detail':'auth-related terms found'})
             score += 5
 
-    evidence = find_evidence(body if 'body' in locals() else '', top_k=3)
+    evidence = []
+    if findings:
+        evidence = find_evidence(body if 'body' in locals() else '', top_k=3)
 
     if score >= 50:
         risk='high'
