@@ -44,3 +44,38 @@ Behavior:
 - `allow` => exit 0
 - `warn` => exit 0 with warning
 - `block` => exit 1 (commit blocked)
+
+
+## Docker Quick Start
+
+```bash
+cd /home/james/openclaw-workspace/appsec-redteam-copilot
+docker compose up --build
+```
+
+Open dashboard:
+- http://127.0.0.1:3480/dashboard
+- http://<server-ip>:3480/dashboard
+
+Stop:
+```bash
+docker compose down
+```
+
+
+## Why This Matters (AI Engineering Recruiter View)
+
+AppSec Red Team Copilot demonstrates production-oriented AI engineering patterns beyond API wrapping:
+- **Pre-change security analysis** on git diff hunks (added lines) with merge-gate verdicts (`allow`/`warn`/`block`)
+- **Post-change analysis** and persisted report history
+- **Evidence-backed findings** via seeded + live advisory ingestion cache
+- **Evaluation harness** with measurable metrics (`riskAccuracy`, `typeCoverage`)
+- **Operational deployment** via Docker Compose with separate API + watcher services
+
+### Core Endpoints
+- `/analyze-diff-hunks` (pre-change)
+- `/analyze-repo-diff` (repo diff)
+- `/reports` (history)
+- `/advisories/refresh` (evidence cache)
+- `/eval/run` (quality benchmark)
+- `/dashboard` (operator UI)
