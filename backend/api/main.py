@@ -8,6 +8,8 @@ from watchers.change_queue import list_items
 from agents.triage_rules import triage_file
 from evaluators.report_store import save_report, list_reports
 from rag.git_diff import find_repo_root, changed_files
+from rag.advisory_ingest import refresh_cache
+from evaluators.run_eval import run_eval
 
 app = FastAPI(title="AppSec Red Team Copilot", version="0.1.1")
 CFG = Path(__file__).resolve().parents[1] / 'watchers' / 'watch_config.json'
@@ -97,3 +99,14 @@ def analyze_repo_diff(path:str):
     return save_report(payload)
 # test Wed May  6 07:20:48 PM UTC 2026
 # test Wed May  6 07:22:51 PM UTC 2026
+
+
+@app.post('/advisories/refresh')
+def advisories_refresh(limit:int=Query(50, ge=1, le=100)):
+    return refresh_cache(limit=limit)
+
+
+@app.post('/eval/run')
+def eval_run():
+    summary, out = run_eval()
+    return {'report': str(out), 'riskAccuracy': summary['riskAccuracy'], 'typeCoverage': summary['typeCoverage'], 'cases': summary['cases']}
