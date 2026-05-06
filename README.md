@@ -20,3 +20,27 @@ uvicorn api.main:app --reload --port 3480
 
 ## Watcher config
 Edit `backend/watchers/watch_config.json`.
+
+
+## Step 9: Pre-commit Gate + Demo
+
+### Install hooks
+```bash
+cd /home/james/openclaw-workspace/appsec-redteam-copilot
+bash scripts/install_hooks.sh
+```
+
+### Pre-commit scan (manual)
+```bash
+python3 scripts/precommit_scan.py
+```
+
+### 2-minute demo
+```bash
+bash scripts/demo_run.sh
+```
+
+Behavior:
+- `allow` => exit 0
+- `warn` => exit 0 with warning
+- `block` => exit 1 (commit blocked)

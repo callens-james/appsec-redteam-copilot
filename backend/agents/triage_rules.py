@@ -70,3 +70,31 @@ def triage_file(path:str):
         confidence = min(0.95, 0.6 + 0.05*len(findings))
 
     return {'path':path,'risk':risk,'score':score,'confidence':round(confidence,2),'findings':findings,'evidence':evidence}
+
+
+def triage_snippet(file_path:str, line:int, code:str):
+    findings=[]
+    score=0
+    body = code or ''
+    for rx in SECRET_PATTERNS:
+        if rx.search(body):
+            findings.append({'type':'secret_pattern','severity':'high','detail':rx.pattern})
+            score += 50
+    for h in INJECTION_HINTS:
+        if h in body:
+            findings.append({'type':'injection_hint','severity':'medium','detail':h})
+            score += 20
+    lower = body.lower()
+    if any(h in lower for h in AUTH_HINTS):
+        findings.append({'type':'auth_surface','severity':'info','detail':'auth-related terms found'})
+        score += 5
+
+    risk='low'
+    if score >= 50: risk='high'
+    elif score >= 20: risk='medium'
+
+    evidence=[]
+    if findings:
+        evidence = find_evidence(body, top_k=3)
+
+    return {'path':file_path,'line':line,'added':code,'risk':risk,'score':score,'findings':findings,'evidence':evidence}

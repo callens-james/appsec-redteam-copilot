@@ -1,14 +1,16 @@
 from fastapi import FastAPI, Query
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from datetime import datetime
 from pathlib import Path
 import json
 
 from watchers.change_queue import list_items
-from agents.triage_rules import triage_file
+from agents.triage_rules import triage_file, triage_snippet
 from evaluators.report_store import save_report, list_reports
 from rag.git_diff import find_repo_root, changed_files
 from rag.advisory_ingest import refresh_cache
+from rag.diff_hunks import get_unified_diff, parse_added_hunks
 from evaluators.run_eval import run_eval
 from evaluators.render_report import render_markdown
 
@@ -90,10 +92,16 @@ def analyze_repo_diff(path:str):
         overall='high'
     elif any(r.get('risk')=='medium' for r in reports):
         overall='medium'
+    verdict='allow'
+    if overall == 'high':
+        verdict='block'
+    elif overall == 'medium':
+        verdict='warn'
     payload = {
       'project': str(root),
       'summary': f'Analyzed git diff files: {len(files)}',
       'risk': overall,
+      'verdict': verdict,
       'findings': reports,
       'source':'git-diff'
     }
@@ -136,3 +144,35 @@ def report_markdown(path:str):
     out = root / 'SECURITY_REPORT.md'
     out.write_text(md)
     return {'path': str(out), 'risk': overall, 'filesAnalyzed': len(files)}
+# safe comment
+
+
+@app.get('/dashboard', response_class=HTMLResponse)
+def dashboard():
+    f = Path(__file__).resolve().parents[1] / 'frontend' / 'dashboard.html'
+    return f.read_text(encoding='utf-8')
+
+
+@app.post('/analyze-diff-hunks')
+def analyze_diff_hunks(path:str):
+    root = find_repo_root(path)
+    if not root:
+        return {'error':'no git repo root found', 'path': path}
+    diff_text = get_unified_diff(root)
+    added = parse_added_hunks(diff_text)
+    analyzed=[]
+    for a in added:
+        file_abs = str((root / a['file']).resolve())
+        r = triage_snippet(file_abs, a['line'], a['added'])
+        if r['findings']:
+            analyzed.append(r)
+    overall='low'
+    if any(x['risk']=='high' for x in analyzed): overall='high'
+    elif any(x['risk']=='medium' for x in analyzed): overall='medium'
+    verdict='allow'
+    if overall == 'high':
+        verdict='block'
+    elif overall == 'medium':
+        verdict='warn'
+    payload={'project':str(root),'summary':f'Analyzed added lines: {len(added)}','risk':overall,'verdict':verdict,'findings':analyzed,'source':'pre-change-diff'}
+    return save_report(payload)
