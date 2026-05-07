@@ -13,7 +13,7 @@ REPO='/home/james/openclaw-workspace/appsec-redteam-copilot'
 mkdir -p "$REPO/backend/tmp"
 cp "$TMP_FILE" "$REPO/backend/tmp/safe_run_candidate.sh"
 
-RESP=$(curl -s -X POST "http://127.0.0.1:3480/analyze-diff-hunks?path=/workspace/backend/tmp/safe_run_candidate.sh" || true)
+RESP=$(curl -s -G --data-urlencode "cmd=$CMD" -X POST "http://127.0.0.1:3480/analyze-command" || true)
 VERDICT=$(echo "$RESP" | python3 -c 'import sys,json; 
 try:
  j=json.load(sys.stdin); print(j.get("verdict","allow"))
