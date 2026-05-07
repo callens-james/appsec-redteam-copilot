@@ -79,3 +79,9 @@ AppSec Red Team Copilot demonstrates production-oriented AI engineering patterns
 - `/advisories/refresh` (evidence cache)
 - `/eval/run` (quality benchmark)
 - `/dashboard` (operator UI)
+
+
+## Screenshots (recommended)
+- Dashboard overview (reports + controls)
+- Pre-change verdict example (`warn`/`block`) with findings table
+- Eval output (`riskAccuracy`, `typeCoverage`)
