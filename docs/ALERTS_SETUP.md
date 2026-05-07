@@ -63,3 +63,9 @@ docker exec -it appsec-copilot sh -lc 'env | grep -E "TELEGRAM_BOT_TOKEN|TELEGRA
 ### No pre-change findings in Docker mode
 - use container-visible path in API call:
 `/workspace/...`
+
+## Blocking behavior today
+- **Telegram alerting** is active for `warn`/`block` verdicts.
+- **Local code execution is NOT auto-blocked** in shell/PuTTY.
+- **Commit blocking** occurs only when using the pre-commit hook workflow.
+- **PR/CI blocking** occurs via GitHub Actions CI gate when thresholds fail.
