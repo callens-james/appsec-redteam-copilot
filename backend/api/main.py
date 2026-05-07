@@ -317,13 +317,24 @@ def preview_diff(path:str):
             if files: files[-1]['removed'] += 1
     frontend = [f for f in files if any(f['file'].endswith(x) for x in ['.html','.css','.js','.ts'])]
     backend = [f for f in files if any(f['file'].endswith(x) for x in ['.py','.go','.java','.cs','.php','.rb'])]
+    added_lines=[]
+    removed_lines=[]
+    for ln in diff.splitlines():
+        if ln.startswith('+') and not ln.startswith('+++'):
+            added_lines.append(ln[1:])
+        elif ln.startswith('-') and not ln.startswith('---'):
+            removed_lines.append(ln[1:])
+    llmPrompt = 'Review this code change for risk/safety.\n\nADDED LINES:\n' + '\n'.join(added_lines[:300]) + '\n\nREMOVED LINES:\n' + '\n'.join(removed_lines[:300])
     return {
       'project': str(root),
       'summary': {'filesChanged': len(files), 'linesAdded': added, 'linesRemoved': removed},
       'impact': {'frontendFiles': len(frontend), 'backendFiles': len(backend)},
       'humanSummary': _human_impact_summary(files, added, removed),
       'files': files[:200],
-      'diffPreview': diff[:20000]
+      'diffPreview': diff[:20000],
+      'addedLines': added_lines[:300],
+      'removedLines': removed_lines[:300],
+      'llmReviewPrompt': llmPrompt[:30000]
     }
 
 @app.post('/preview/test-run')
