@@ -8,11 +8,12 @@ AppSec Red Team Copilot reviews risky code changes before merge, assigns clear `
 
 If you are reviewing this as a portfolio project:
 
-1. Read `docs/REVIEWER_GUIDE.md`.
-2. Skim the screenshots in `docs/screenshots/`.
-3. Follow the demo flow in `docs/DEMO_SCRIPT.md`.
-4. Review validation evidence in `release/proof-pack/validation-evidence-2026-05-12.md`.
-5. Check safety limits in `docs/SECURITY_GUARANTEES_AND_LIMITS.md`.
+1. Read `docs/PORTFOLIO_ONE_PAGER.md`.
+2. Read `docs/REVIEWER_GUIDE.md`.
+3. Skim the screenshots with `docs/SCREENSHOTS.md`.
+4. Follow the demo flow in `docs/DEMO_SCRIPT.md`.
+5. Review validation evidence in `release/proof-pack/validation-evidence-2026-05-12.md`.
+6. Check safety limits in `docs/SECURITY_GUARANTEES_AND_LIMITS.md`.
 
 Latest local validation highlights:
 
@@ -136,7 +137,9 @@ Expected:
 - **Secret hygiene** with local-only environment config
 
 ## Portfolio readiness
+- Portfolio one-pager: `docs/PORTFOLIO_ONE_PAGER.md`
 - Reviewer guide: `docs/REVIEWER_GUIDE.md`
+- Screenshot guide: `docs/SCREENSHOTS.md`
 - Portfolio readiness notes: `docs/PORTFOLIO_READINESS.md`
 - Promotion package template: `docs/PORTFOLIO_PROMOTION_PACKAGE_TEMPLATE.md`
 - Runtime artifact policy: `docs/RUNTIME_ARTIFACTS.md`
@@ -150,6 +153,8 @@ Expected:
 5. Generate markdown report
 
 ## Screenshots
+See `docs/SCREENSHOTS.md` for what each screenshot proves.
+
 ![Dashboard Overview](docs/screenshots/dashboard-overview.jpg)
 ![Pre-change Findings](docs/screenshots/prechange-findings.jpg)
 ![Findings Table](docs/screenshots/prechange-table.jpg)

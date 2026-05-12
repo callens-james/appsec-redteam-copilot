@@ -22,11 +22,12 @@ It also demonstrates a stronger engineering habit: safety claims are backed by r
 
 ## Best 5-Minute Review Path
 
-1. Read the main README overview and quick self-test.
-2. Open the screenshots in `docs/screenshots/`.
-3. Read the 2-minute demo script: `docs/DEMO_SCRIPT.md`.
-4. Review proof evidence: `release/proof-pack/validation-evidence-2026-05-12.md`.
-5. Review safety limits: `docs/SECURITY_GUARANTEES_AND_LIMITS.md`.
+1. Read the portfolio one-pager: `docs/PORTFOLIO_ONE_PAGER.md`.
+2. Read the main README overview and quick self-test.
+3. Open the screenshot guide: `docs/SCREENSHOTS.md`.
+4. Read the 2-minute demo script: `docs/DEMO_SCRIPT.md`.
+5. Review proof evidence: `release/proof-pack/validation-evidence-2026-05-12.md`.
+6. Review safety limits: `docs/SECURITY_GUARANTEES_AND_LIMITS.md`.
 
 ## What To Look For
 
