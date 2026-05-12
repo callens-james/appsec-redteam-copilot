@@ -62,6 +62,6 @@ These are small validation/hygiene items, not a redesign:
 
 Use the current proof pack for portfolio/recruiter review.
 
-Before a strict release/tag claim, complete the remaining emergency override lifecycle test in `release/V0_4_TAG_CHECKLIST.md`.
+The local validation checklist is complete. Release/tag promotion should remain a human decision after branch review.
 
 Do not add features until the current story is easy to verify and explain.

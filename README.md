@@ -22,6 +22,7 @@ Latest local validation highlights:
 - audit verification: `ok=true`
 - broker coverage: `1.0`, status `SAFE`
 - eval harness: `riskAccuracy=1.0`, `typeCoverage=1.0` on 4 labeled cases
+- emergency override lifecycle tested and cleaned up inactive
 
 ## START HERE (explicit install)
 

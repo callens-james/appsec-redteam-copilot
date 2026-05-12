@@ -12,11 +12,11 @@ Do not mark an item complete unless the result was actually observed and recorde
 
 - [x] `/safety/audit/verify` returns `ok=true`
   - Evidence/date: 2026-05-12
-  - Notes: `ok=true`, checked 15 audit entries, errors empty.
+  - Notes: `ok=true`, checked 26 audit entries, errors empty.
 
 - [x] `/safety/metrics` shows `brokerCoverageRate` + `coverageStatus`
   - Evidence/date: 2026-05-12
-  - Notes: `brokerCoverageRate=1.0`, `coverageStatus=SAFE`.
+  - Notes: `executionEvents=23`, `brokerCoverageRate=1.0`, `coverageStatus=SAFE`.
 
 - [x] Broker-only mode confirmed ON
   - Evidence/date: 2026-05-12
@@ -26,9 +26,9 @@ Do not mark an item complete unless the result was actually observed and recorde
   - Evidence/date: 2026-05-12
   - Notes: `/safety/mode` returned `agentSafeMode=true` and `commandGuard=true`.
 
-- [ ] Emergency override tested: enable / auto-expire / disable + audit events
-  - Evidence/date:
-  - Notes: Not exercised in this local validation pass.
+- [x] Emergency override tested: enable / auto-expire / disable + audit events
+  - Evidence/date: 2026-05-12
+  - Notes: Override enabled for 1 minute, auto-expired, explicit disable cleanup confirmed inactive state. Audit events observed: `emergency-override-enabled`, `emergency-override-auto-disabled`, `emergency-override-disabled`.
 
 - [x] Threat/guarantee docs reviewed
   - Evidence/date: 2026-05-12
@@ -45,6 +45,9 @@ Current evidence bundle:
 - `release/proof-pack/validation-evidence-2026-05-12.md`
 - `release/proof-pack/latest_eval.json`
 - `release/proof-pack/latest_prechange_report.json`
+- `release/proof-pack/latest_pr_comment.json`
+- `release/proof-pack/latest_safety_metrics.json`
+- `release/proof-pack/latest_audit_verify.json`
 - `release/proof-pack/latest_report.json`
 - `release/proof-pack/SECURITY_REPORT.md`
 
@@ -63,8 +66,8 @@ See: `docs/RUNTIME_ARTIFACTS.md`
 
 ## Current Status
 
-Local validation is mostly complete for the v0.4 safety milestone.
+Local v0.4 safety milestone validation is complete.
 
-Remaining item before a strict tag/release claim:
+Recommended next human decision:
 
-- emergency override lifecycle test
+- whether to tag this as an official release milestone after branch review

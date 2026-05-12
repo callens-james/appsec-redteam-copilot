@@ -40,6 +40,7 @@ Validated locally on 2026-05-12:
 - audit verification returned `ok=true`
 - broker coverage reported `1.0`, status `SAFE`
 - eval harness returned `riskAccuracy=1.0`, `typeCoverage=1.0` on 4 labeled cases
+- emergency override lifecycle tested and cleaned up inactive
 
 Evidence: `release/proof-pack/validation-evidence-2026-05-12.md`
 
