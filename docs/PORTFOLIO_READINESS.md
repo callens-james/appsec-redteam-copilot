@@ -55,10 +55,7 @@ These are small validation/hygiene items, not a redesign:
    - audit verification
    - safety metrics / broker coverage
    - demo walkthrough
-3. Decide how to handle generated runtime artifacts:
-   - `__pycache__/`
-   - watcher queue files
-   - advisory cache files
+3. Decide how to handle generated runtime artifacts. See `docs/RUNTIME_ARTIFACTS.md`.
 4. Keep the demo focused; do not try to explain every subsystem at once.
 
 ## Recommended Next Step

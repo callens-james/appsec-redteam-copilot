@@ -118,6 +118,7 @@ Expected:
 ## Portfolio readiness
 - Portfolio readiness notes: `docs/PORTFOLIO_READINESS.md`
 - Promotion package template: `docs/PORTFOLIO_PROMOTION_PACKAGE_TEMPLATE.md`
+- Runtime artifact policy: `docs/RUNTIME_ARTIFACTS.md`
 
 ## 30-Second Demo
 1. Open `/dashboard`

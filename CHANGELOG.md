@@ -3,7 +3,8 @@
 ## Unreleased
 - Added portfolio readiness notes to clarify the strongest demo path, precise claims, current promotion gaps, and next validation step.
 - Added a portfolio promotion package template for future evidence bundling.
-- Expanded `.gitignore` coverage for Python/runtime cache artifacts.
+- Added runtime artifact policy docs and expanded `.gitignore` coverage for Python/runtime cache artifacts.
+- Expanded the v0.4 tag checklist into an evidence-capture worksheet.
 
 ## v0.3.0 - 2026-05-07
 - Added pre-change diff hunk analysis endpoint with verdict gating (`allow`/`warn`/`block`)
