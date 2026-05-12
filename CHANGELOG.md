@@ -8,6 +8,7 @@
 - Fixed one-time approval token enforcement in brokered execution validation flow.
 - Updated safety regression script for capability-token broker requirements.
 - Added local validation evidence to the proof pack.
+- Added reviewer guide, proof-pack index, and tightened demo flow for portfolio/recruiter review.
 
 ## v0.3.0 - 2026-05-07
 - Added pre-change diff hunk analysis endpoint with verdict gating (`allow`/`warn`/`block`)

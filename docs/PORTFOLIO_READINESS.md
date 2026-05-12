@@ -1,6 +1,6 @@
 # Portfolio Readiness — AppSec Red Team Copilot
 
-Status: **near portfolio-ready**
+Status: **portfolio/recruiter review-ready on branch**
 
 This project already has a strong portfolio story: a local-first AppSec copilot that analyzes risky code changes before merge and returns explicit `allow` / `warn` / `block` verdicts with evidence, reports, and an operator dashboard.
 
@@ -60,6 +60,8 @@ These are small validation/hygiene items, not a redesign:
 
 ## Recommended Next Step
 
-Run a focused validation pass and produce one final promotion package.
+Use the current proof pack for portfolio/recruiter review.
+
+Before a strict release/tag claim, complete the remaining emergency override lifecycle test in `release/V0_4_TAG_CHECKLIST.md`.
 
 Do not add features until the current story is easy to verify and explain.

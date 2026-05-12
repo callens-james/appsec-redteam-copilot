@@ -2,6 +2,26 @@
 
 Local-first AI safety guard for coding workflows.
 
+AppSec Red Team Copilot reviews risky code changes before merge, assigns clear `allow` / `warn` / `block` verdicts, and backs safety claims with validation evidence.
+
+## Reviewer quick path
+
+If you are reviewing this as a portfolio project:
+
+1. Read `docs/REVIEWER_GUIDE.md`.
+2. Skim the screenshots in `docs/screenshots/`.
+3. Follow the demo flow in `docs/DEMO_SCRIPT.md`.
+4. Review validation evidence in `release/proof-pack/validation-evidence-2026-05-12.md`.
+5. Check safety limits in `docs/SECURITY_GUARANTEES_AND_LIMITS.md`.
+
+Latest local validation highlights:
+
+- install/dashboard check passed
+- safety regression passed: `11/11`
+- audit verification: `ok=true`
+- broker coverage: `1.0`, status `SAFE`
+- eval harness: `riskAccuracy=1.0`, `typeCoverage=1.0` on 4 labeled cases
+
 ## START HERE (explicit install)
 
 ### Linux/macOS
@@ -116,9 +136,11 @@ Expected:
 - **Secret hygiene** with local-only environment config
 
 ## Portfolio readiness
+- Reviewer guide: `docs/REVIEWER_GUIDE.md`
 - Portfolio readiness notes: `docs/PORTFOLIO_READINESS.md`
 - Promotion package template: `docs/PORTFOLIO_PROMOTION_PACKAGE_TEMPLATE.md`
 - Runtime artifact policy: `docs/RUNTIME_ARTIFACTS.md`
+- Proof pack index: `release/proof-pack/README.md`
 
 ## 30-Second Demo
 1. Open `/dashboard`
