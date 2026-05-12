@@ -12,4 +12,6 @@ __pycache__/
 
 # local runtime/cache artifacts
 backend/data/advisories_cache.json
+backend/data/safety_audit.jsonl
+backend/data/safety_policy.json
 backend/watchers/change_queue.jsonl

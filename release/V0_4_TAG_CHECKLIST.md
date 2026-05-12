@@ -6,52 +6,47 @@ Do not mark an item complete unless the result was actually observed and recorde
 
 ## Validation Checklist
 
-- [ ] `bash scripts/safety_regression_check.sh` passes
-  - Evidence/date:
-  - Notes:
+- [x] `bash scripts/safety_regression_check.sh` passes
+  - Evidence/date: 2026-05-12, pass=11 fail=0
+  - Notes: Updated regression script to match current capability-token safety model.
 
-- [ ] `/safety/audit/verify` returns `ok=true`
-  - Evidence/date:
-  - Notes:
+- [x] `/safety/audit/verify` returns `ok=true`
+  - Evidence/date: 2026-05-12
+  - Notes: `ok=true`, checked 15 audit entries, errors empty.
 
-- [ ] `/safety/metrics` shows `brokerCoverageRate` + `coverageStatus`
-  - Evidence/date:
-  - Notes:
+- [x] `/safety/metrics` shows `brokerCoverageRate` + `coverageStatus`
+  - Evidence/date: 2026-05-12
+  - Notes: `brokerCoverageRate=1.0`, `coverageStatus=SAFE`.
 
-- [ ] Broker-only mode confirmed ON
-  - Evidence/date:
-  - Notes:
+- [x] Broker-only mode confirmed ON
+  - Evidence/date: 2026-05-12
+  - Notes: `/safety/mode` returned `brokerOnlyMode=true`.
 
-- [ ] Master Safe Mode confirmed ON
-  - Evidence/date:
-  - Notes:
+- [x] Master Safe Mode confirmed ON
+  - Evidence/date: 2026-05-12
+  - Notes: `/safety/mode` returned `agentSafeMode=true` and `commandGuard=true`.
 
 - [ ] Emergency override tested: enable / auto-expire / disable + audit events
   - Evidence/date:
-  - Notes:
+  - Notes: Not exercised in this local validation pass.
 
-- [ ] Threat/guarantee docs reviewed
-  - Evidence/date:
-  - Notes:
+- [x] Threat/guarantee docs reviewed
+  - Evidence/date: 2026-05-12
+  - Notes: Existing guarantee/limit docs retained; runtime artifact and validation evidence docs added.
 
-- [ ] Demo script walkthrough completed
-  - Evidence/date:
-  - Notes:
+- [x] Demo script walkthrough completed
+  - Evidence/date: 2026-05-12
+  - Notes: Dashboard health verified; pre-change report endpoint and PR-comment endpoint validated against current repo state.
 
 ## Evidence Bundle
 
-When complete, update or create a final proof bundle with:
+Current evidence bundle:
 
-- latest eval result summary
-- latest pre-change report summary
-- audit verification result
-- safety metrics result
-- screenshots or dashboard proof, if refreshed
-- known limits / non-claims
-
-Recommended destination:
-
-`release/proof-pack/`
+- `release/proof-pack/validation-evidence-2026-05-12.md`
+- `release/proof-pack/latest_eval.json`
+- `release/proof-pack/latest_prechange_report.json`
+- `release/proof-pack/latest_report.json`
+- `release/proof-pack/SECURITY_REPORT.md`
 
 ## Runtime Artifact Reminder
 
@@ -68,4 +63,8 @@ See: `docs/RUNTIME_ARTIFACTS.md`
 
 ## Current Status
 
-Not yet marked release-ready. This checklist is prepared for a focused validation pass.
+Local validation is mostly complete for the v0.4 safety milestone.
+
+Remaining item before a strict tag/release claim:
+
+- emergency override lifecycle test
