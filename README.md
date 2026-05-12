@@ -115,6 +115,10 @@ Expected:
 - **Operational deployment** (Docker + systemd)
 - **Secret hygiene** with local-only environment config
 
+## Portfolio readiness
+- Portfolio readiness notes: `docs/PORTFOLIO_READINESS.md`
+- Promotion package template: `docs/PORTFOLIO_PROMOTION_PACKAGE_TEMPLATE.md`
+
 ## 30-Second Demo
 1. Open `/dashboard`
 2. Run pre-change analysis
